@@ -19,6 +19,7 @@ news_script_output = php("sqliteDb.php")
 form = cgi.FieldStorage()
 to = form.getvalue('to')
 text  = form.getvalue('text')
+passwd = 'enter password'
 print "Content-type:text/html\r\n\r\n"
 #print """<script type="text/javascript">location.href='http://geektronics.tk/sms/';</script>"""
 
@@ -30,7 +31,7 @@ def database():
     print "hello"
 
 def login ():
-    f = opener.open('http://site2.way2sms.com/Login1.action', 'username=8050636905&password=sandyvinnu&button=Login')
+    f = opener.open('http://site2.way2sms.com/Login1.action', 'username=8050636905&password=+'+passwd+'+&button=Login')
     s = f.read()
     f.close()
     return 'logout' in s
