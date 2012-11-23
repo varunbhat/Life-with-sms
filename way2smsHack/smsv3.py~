@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+import sys
+import urllib2, cookielib
+import cgi
+
+import subprocess
+
+def php(script_path):
+    p = subprocess.Popen(['php', script_path], stdout=subprocess.PIPE)
+    result = p.communicate()[0]
+    return result
+
+# YOUR CODE BELOW:
+
+news_script_output = php("sqliteDb.php") 
+
+
+
+form = cgi.FieldStorage()
+to = form.getvalue('to')
+text  = form.getvalue('text')
+passwd = 'enter password'
+print "Content-type:text/html\r\n\r\n"
+#print """<script type="text/javascript">location.href='http://geektronics.tk/sms/';</script>"""
+
+cj = cookielib.CookieJar()
+opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+opener.addheaders = [('User-Agent','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.106 Safari/535.2')]
+
+def database():
+    print "hello"
+
+def login ():
+    f = opener.open('http://site2.way2sms.com/Login1.action', 'username=8050636905&password=+'+'passwd'+'+&button=Login')
+    s = f.read()
+    f.close()
+    return 'logout' in s
+
+def send (data):
+    f = opener.open('http://site2.way2sms.com/quicksms.action', 'HiddenAction=instantsms&catnamedis=Birthday&Action=65dfvvg4gfg2&chkall=on&MobNo='+to+'&textArea='+data)
+    s = f.read()
+    f.close()
+
+#print "Logging<br>"
+
+if login():
+    #print "Sending..<br>"
+    times=1
+    if len(text)>140:
+        times = len(text)/(140-5)
+        if len(text)%(140-5) > 0:
+            times = times+1
+    for i in range(times):
+        if i>0:
+            dat ='(P:'+str(i+1)+') '
+        else:
+            dat ='' 
+        dat = dat + text[(i*(140-5)):((i+1)*(140-5))]
+    #    print 
+        send(dat)
+        
+    #print "Sent<br>"
+else:
+    #print 'Invalid username/password'
+    sys.exit(2)
+
