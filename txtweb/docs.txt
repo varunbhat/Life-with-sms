@@ -1,0 +1,36 @@
+push notificaton format to send data
+
+reminder = Push(myMobile,"hello Mr Gay!!")
+reminder.send()
+
+test url 
+http://bloodforreva.tk/cgi-bin/v3.py?txtweb-message=1re09ec101%2089%208050636905
+
+
+example mobile number hashes
+
+#myMobile = 'eafa06c4-4f54-42bb-8de9-2d4d1066ef48'
+#myMobile = 'd1b3afb9-d524-4e16-a148-8e7de2fd4c70'
+#mobs = ['405a0396-c56a-4d15-8a1b-1e58a943a2aa','3d3cc7a7-3655-4b09-bcd3-0534db6a4b3d','d1b3afb9-d524-4e16-a148-8e7de2fd4c70','eafa06c4-4f54-42bb-8de9-2d4d1066ef48'] 
+
+
+my mobile hash is 
+self.myMobile = "d71508a6-54db-484b-ba02-5628f4924cf9"
+
+form txtweb import txtweb
+
+class mytxtweb(txtweb):
+	def validate():
+		# do the stuff
+	def insert2DB():
+		# do ur stuff
+
+
+
+database and thetype of content htey hold 
+myvals = {'Name':"TEXT",'Phone':"TEXT",'hash':'TEXT'}
+instantiating (name,type&rows, append/write)
+myDon = Databasing('ddd.db',myvals,'w')
+dat =  {'Name':'Varuasdfn Bhat K N','Phone':'805055636905','hash':'safdsafdaafada'}
+print myDon.write(dat)
+print myDon.read()
